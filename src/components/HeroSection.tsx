@@ -133,7 +133,7 @@ const HeroSection = () => {
 
             {/* Sub-headline */}
             <p className="text-base sm:text-xl text-muted-foreground mb-10 leading-relaxed">
-              Stop buying leads. Start receiving signed retainers. ~$3,000 per signed case. We fund the ads, run the intake, and deliver cases ready to litigate. For PI firms signing 10+ MVA cases/month.
+              Stop buying leads. Start receiving signed retainers. ~$3,000 per signed case. We fund the ads, run the intake, and deliver cases ready to litigate or settle. For PI firms signing 10+ MVA cases/month.
             </p>
 
             {/* CTA */}

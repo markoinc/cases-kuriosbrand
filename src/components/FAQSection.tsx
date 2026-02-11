@@ -10,7 +10,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "What is the minimum commitment?",
-      answer: "We require a test batch of 30-50 leads to establish a baseline. After that, we scale based on your capacity. No long-term contracts."
+      answer: "We deliver 80-100 leads per month to establish performance. After that, we scale based on your capacity and results. No long-term contracts."
     },
     {
       question: "How scalable is this?",

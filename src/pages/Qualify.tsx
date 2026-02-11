@@ -152,6 +152,15 @@ const Qualify = () => {
   };
 
   const handleNext = () => {
+    // Branching logic for volume question (step 1)
+    if (currentStep === 1) {
+      if (answers.volume === "building") {
+        setDisqualifyReason("volume");
+        handleTransition(() => setStage("disqualified"));
+        return;
+      }
+    }
+    
     // Branching logic for intake question (step 2)
     if (currentStep === 2) {
       if (answers.intake === "attorneys-handle" || answers.intake === "building-team") {
@@ -367,9 +376,9 @@ const Qualify = () => {
                     </RadioGroup>
                     
                     {answers.volume && (
-                      <QualificationFeedback type="positive">
+                      <QualificationFeedback type={answers.volume === "building" ? "warning" : "positive"}>
                         {answers.volume === "building" && (
-                          <>Solid foundation. At this stage, the bottleneck usually shifts from getting leads to qualifying them efficiently—which is where our pre-screening adds the most value.</>
+                          <>Our model delivers 80-100 leads monthly, designed for firms signing 10+ cases/month. At 5-10 cases, our volume may overwhelm your current capacity.</>
                         )}
                         {answers.volume === "scaling" && (
                           <>This range is where operational efficiency becomes critical. Adding volume without adding overhead is the challenge—our model handles the lead gen so your team can focus on conversion.</>
@@ -538,10 +547,13 @@ const Qualify = () => {
                   </div>
                   
                   <h2 className="text-3xl sm:text-4xl font-black text-primary-foreground mb-4">
+                    {disqualifyReason === "volume" && "We work best with higher-volume firms."}
                     {disqualifyReason === "intake" && "Timing matters more than you'd think."}
                     {disqualifyReason === "cost" && "Our model works best at higher acquisition costs."}
                   </h2>
                   <p className="text-lg text-muted-foreground mb-8">
+                    {disqualifyReason === "volume" && 
+                      "Our model delivers 80-100 leads per month, designed for firms signing 10+ cases monthly. At your current volume, our lead flow would likely overwhelm your intake capacity. We'd recommend scaling your internal operations first, then reconnecting when you're ready for higher volume."}
                     {disqualifyReason === "intake" && 
                       "Our leads need to be contacted within 5 minutes to convert well. Without a dedicated intake team ready to respond immediately, we've seen firms burn through budget with poor close rates. We'd rather wait until your team is in place than set you up for frustration."}
                     {disqualifyReason === "cost" && 
