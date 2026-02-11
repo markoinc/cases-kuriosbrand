@@ -254,16 +254,16 @@ const Qualify = () => {
           <section className="min-h-[calc(100vh-80px)] flex items-center relative overflow-hidden py-8 lg:py-0">
             {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
-            <div className="absolute top-20 right-10 w-96 h-96 bg-primary/20 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-20 left-10 w-72 h-72 bg-accent/15 blur-[100px] pointer-events-none" />
+            <div className="absolute top-20 right-10 w-96 h-96 bg-primary/20 blur-[30px] pointer-events-none" />
+            <div className="absolute bottom-20 left-10 w-72 h-72 bg-accent/15 blur-[50px] pointer-events-none" />
             
             <div className="container-kurios relative z-10">
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Founder Image - hidden on mobile, smaller on tablet */}
                 <div className="hidden lg:flex justify-center lg:justify-end order-1 lg:order-2 animate-fade-in-up">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 blur-[60px] scale-110" />
-                    <div className="relative w-48 h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80 overflow-hidden border-4 border-primary/40 shadow-[0_0_60px_hsl(218_100%_60%/0.3)]">
+                    <div className="absolute inset-0 bg-primary/20 blur-[30px] scale-110" />
+                    <div className="relative w-48 h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80 overflow-hidden border-4 border-primary/40 shadow-[0_0_30px_hsl(218_100%_60%/0.15)]">
                       <img 
                         src={markGundrum} 
                         alt="Mark Gundrum - Founder of Kurios"

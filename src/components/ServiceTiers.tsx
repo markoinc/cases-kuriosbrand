@@ -83,8 +83,8 @@ const ServiceTiers = () => {
                 key={index}
                 className={`relative flex flex-col p-6 sm:p-8 border-2 transition-all duration-300 animate-fade-in-up ${
                   tier.highlight 
-                    ? 'bg-primary border-primary shadow-[0_0_30px_hsl(218_100%_60%/0.3)]' 
-                    : 'bg-card border-border hover:border-primary/50 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)]'
+                    ? 'bg-primary border-primary shadow-[0_0_8px_hsl(218_100%_60%/0.08)]' 
+                    : 'bg-card border-border hover:border-primary/50 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)]'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -153,7 +153,7 @@ const ServiceTiers = () => {
           <div className="text-center animate-fade-in-up animation-delay-300">
             <Button 
               size="lg" 
-              className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-base sm:text-lg px-6 sm:px-10 py-6 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_20px_hsl(218_100%_60%/0.3)] font-bold uppercase tracking-wide"
+              className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-base sm:text-lg px-6 sm:px-10 py-6 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_10px_hsl(218_100%_60%/0.15)] font-bold uppercase tracking-wide"
               asChild
             >
               <a href="/qualify">

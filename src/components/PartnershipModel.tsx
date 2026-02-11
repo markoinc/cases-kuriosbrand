@@ -40,7 +40,7 @@ const PartnershipModel = () => {
           {/* Split Cards */}
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* Column 1: What Kurios Does */}
-            <div className="bg-card border-2 border-border p-8 sm:p-10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)] animate-fade-in-up">
+            <div className="bg-card border-2 border-border p-8 sm:p-10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)] animate-fade-in-up">
               <div className="flex items-center gap-3 mb-8">
                 <div className="p-3 bg-primary/10 border-2 border-primary/30">
                   <Target className="h-6 w-6 text-primary" />
@@ -64,7 +64,7 @@ const PartnershipModel = () => {
             </div>
 
             {/* Column 2: What You Do */}
-            <div className="bg-primary border-2 border-primary p-8 sm:p-10 shadow-[0_0_30px_hsl(218_100%_60%/0.3)] animate-fade-in-up animation-delay-100">
+            <div className="bg-primary border-2 border-primary p-8 sm:p-10 shadow-[0_0_8px_hsl(218_100%_60%/0.08)] animate-fade-in-up animation-delay-100">
               <div className="flex items-center gap-3 mb-8">
                 <div className="p-3 bg-primary-foreground/10 border-2 border-primary-foreground/30">
                   <Scale className="h-6 w-6 text-primary-foreground" />

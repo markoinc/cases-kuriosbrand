@@ -30,7 +30,7 @@ const ValueProposition = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={benefit}
-              className="flex items-start gap-4 p-6 bg-card border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)] animate-fade-in-up"
+              className="flex items-start gap-4 p-6 bg-card border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)] animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex-shrink-0 w-10 h-10 bg-accent/10 border-2 border-accent/30 flex items-center justify-center">

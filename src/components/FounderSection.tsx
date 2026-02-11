@@ -5,7 +5,7 @@ import markGundrum from "@/assets/mark-gundrum.png";
 const FounderSection = () => {
   return (
     <section className="bg-charcoal section-padding relative overflow-x-hidden" id="founder">
-      <div className="hidden sm:block absolute top-20 right-10 w-72 h-72 bg-primary/15 blur-[100px] pointer-events-none" />
+      <div className="hidden sm:block absolute top-20 right-10 w-72 h-72 bg-primary/15 blur-[50px] pointer-events-none" />
       
       <div className="container-kurios relative">
         <div className="max-w-4xl mx-auto">

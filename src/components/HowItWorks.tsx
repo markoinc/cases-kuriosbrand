@@ -39,7 +39,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div key={step.title} className="relative">
                 <div 
-                  className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)] animate-fade-in-up"
+                  className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)] animate-fade-in-up"
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-6">

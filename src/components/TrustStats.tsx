@@ -78,7 +78,7 @@ const StatCard = ({ stat, index, isVisible }: { stat: typeof stats[0]; index: nu
       className="relative group"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <div className="bg-card border-2 border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.2)]">
+      <div className="bg-card border-2 border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.1)]">
         <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 border-2 border-primary/30 text-primary mb-4 group-hover:border-primary transition-colors">
           <Icon className="w-6 h-6" />
         </div>

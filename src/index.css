@@ -62,7 +62,7 @@
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.1);
     --shadow-card: 0 2px 4px 0 rgb(0 0 0 / 0.1);
     --shadow-elevated: 0 4px 12px 0 rgb(0 0 0 / 0.15);
-    --shadow-glow: 0 0 20px hsl(218 100% 60% / 0.3);
+    --shadow-glow: 0 0 10px hsl(218 100% 60% / 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 10%;
@@ -195,7 +195,7 @@
   }
 
   .glow-text {
-    text-shadow: 0 0 10px hsl(218 100% 60% / 0.5);
+    text-shadow: 0 0 5px hsl(218 100% 60% / 0.25);
   }
 }
 

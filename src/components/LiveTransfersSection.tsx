@@ -57,7 +57,7 @@ const LiveTransfersSection = () => {
             {capabilities.map((capability, index) => (
               <div 
                 key={index}
-                className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)]"
+                className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)]"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 p-3 bg-primary/10 border-2 border-primary/30">

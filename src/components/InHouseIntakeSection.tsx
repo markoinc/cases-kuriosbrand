@@ -55,7 +55,7 @@ const InHouseIntakeSection = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(218_100%_60%/0.15)]"
+                className="bg-card border-2 border-border p-6 sm:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_10px_hsl(218_100%_60%/0.08)]"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 p-3 bg-primary/10 border-2 border-primary/30">
@@ -126,7 +126,7 @@ const InHouseIntakeSection = () => {
           <div className="text-center animate-fade-in-up animation-delay-400">
             <Button 
               size="lg" 
-              className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-base sm:text-lg px-6 sm:px-10 py-6 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_20px_hsl(218_100%_60%/0.3)] font-bold uppercase tracking-wide"
+              className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-base sm:text-lg px-6 sm:px-10 py-6 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_10px_hsl(218_100%_60%/0.15)] font-bold uppercase tracking-wide"
               asChild
             >
               <a href="/qualify">

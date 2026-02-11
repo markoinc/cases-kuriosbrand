@@ -5,8 +5,8 @@ const TestBatchProtocol = () => {
   return (
     <section className="bg-charcoal py-14 sm:py-20 md:py-24 relative overflow-x-hidden" id="contact">
       {/* Background glow - hidden on mobile */}
-      <div className="hidden sm:block absolute top-0 left-1/4 w-96 h-96 bg-primary/20 blur-[120px] pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-0 right-1/4 w-96 h-96 bg-accent/15 blur-[120px] pointer-events-none" />
+      <div className="hidden sm:block absolute top-0 left-1/4 w-96 h-96 bg-primary/20 blur-[30px] pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-0 right-1/4 w-96 h-96 bg-accent/15 blur-[30px] pointer-events-none" />
       
       {/* Grid pattern */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
@@ -44,7 +44,7 @@ const TestBatchProtocol = () => {
           <div className="text-center animate-fade-in-up animation-delay-200 px-4 sm:px-0">
             <Button 
               size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-sm sm:text-xl px-6 sm:px-14 py-5 sm:py-7 h-auto border-2 border-accent shadow-[0_0_25px_hsl(218_100%_60%/0.4)] font-bold uppercase tracking-wide"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-sm sm:text-xl px-6 sm:px-14 py-5 sm:py-7 h-auto border-2 border-accent shadow-[0_0_12px_hsl(218_100%_60%/0.2)] font-bold uppercase tracking-wide"
               asChild
             >
               <a href="/qualify">

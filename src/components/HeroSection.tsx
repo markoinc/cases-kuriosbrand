@@ -48,7 +48,7 @@ const TerminalAnimation = () => {
   return (
     <div 
       ref={terminalRef}
-      className="bg-charcoal border-2 border-primary/40 p-4 sm:p-6 font-mono text-sm shadow-[0_0_30px_hsl(218_100%_60%/0.2)] overflow-hidden"
+      className="bg-charcoal border-2 border-primary/40 p-4 sm:p-6 font-mono text-sm shadow-[0_0_15px_hsl(218_100%_60%/0.1)] overflow-hidden"
     >
       {/* Terminal Header */}
       <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
@@ -109,8 +109,8 @@ const HeroSection = () => {
       }} />
 
       {/* Glow accents - hidden on mobile to prevent overflow */}
-      <div className="hidden sm:block absolute top-20 left-10 w-72 h-72 bg-primary/20 blur-[100px] pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-20 right-10 w-96 h-96 bg-accent/15 blur-[120px] pointer-events-none" />
+      <div className="hidden sm:block absolute top-20 left-10 w-72 h-72 bg-primary/20 blur-[50px] pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-20 right-10 w-96 h-96 bg-accent/15 blur-[30px] pointer-events-none" />
       
       <div className="container-kurios relative">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -140,7 +140,7 @@ const HeroSection = () => {
             <div className="mb-6">
               <Button 
                 size="lg" 
-                className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-sm sm:text-xl px-6 sm:px-14 py-5 sm:py-8 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_20px_hsl(218_100%_60%/0.3)] font-bold uppercase tracking-wide"
+                className="btn-hover w-full sm:w-auto max-w-full min-w-0 whitespace-normal text-center text-sm sm:text-xl px-6 sm:px-14 py-5 sm:py-8 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_10px_hsl(218_100%_60%/0.15)] font-bold uppercase tracking-wide"
                 asChild
               >
               <a href="/qualify">

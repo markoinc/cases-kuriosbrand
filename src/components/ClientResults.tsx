@@ -177,7 +177,7 @@ const ClientResults = () => {
 
         <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
           {/* Main result card */}
-          <div className="relative bg-card border-2 border-border p-6 sm:p-8 shadow-[0_0_30px_hsl(218_100%_60%/0.1)] min-h-[280px] transition-all duration-300 hover:border-primary/50">
+          <div className="relative bg-card border-2 border-border p-6 sm:p-8 shadow-[0_0_15px_hsl(218_100%_60%/0.05)] min-h-[280px] transition-all duration-300 hover:border-primary/50">
             {/* State badge */}
             <div className="flex flex-wrap items-center gap-2 mb-6">
               <MapPin className="h-5 w-5 text-primary" />
