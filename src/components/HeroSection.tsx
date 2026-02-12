@@ -128,7 +128,7 @@ const HeroSection = () => {
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary-foreground mb-6 sm:mb-8 leading-[1.05] tracking-tight uppercase">
               <span className="block">WE SIGN MVA CASES.</span>
               <span className="block text-primary glow-text">YOU RECEIVE THEM.</span>
-              <span className="block text-muted-foreground text-lg sm:text-3xl md:text-4xl font-bold mt-2">7 SIGNED CASES IN 30 DAYS — GUARANTEED</span>
+              <span className="block text-muted-foreground text-lg sm:text-3xl md:text-4xl font-bold mt-2">7 SIGNED CASES IN 30 DAYS</span>
             </h1>
 
             {/* Sub-headline */}
