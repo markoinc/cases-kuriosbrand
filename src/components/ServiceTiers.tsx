@@ -14,7 +14,7 @@ const ServiceTiers = () => {
         "100% exclusive delivery",
         "15% avg conversion rate on leads",
         "TrustedForm & Jornaya certified",
-        "$2,000 avg cost per case"
+        "$1,915 avg cost per case"
       ],
       ideal: "Firms with 3+ dedicated intake reps",
       highlight: false
@@ -30,7 +30,7 @@ const ServiceTiers = () => {
         "50% conversion rate on transfers",
         "Intent verification before transfer",
         "Recorded calls for quality assurance",
-        "$2,500 avg cost per case"
+        "$2,450 avg cost per case"
       ],
       ideal: "Firms struggling with lead response time",
       highlight: false
@@ -42,7 +42,7 @@ const ServiceTiers = () => {
       icon: FileSignature,
       features: [
         "We close the retainer for you",
-        "$3,000 avg cost per signed case",
+        "$2,900 avg cost per signed case",
         "87% of partners renew after 90 days",
         "State-specific compliance guardrails",
         "Zero intake burden on your team"

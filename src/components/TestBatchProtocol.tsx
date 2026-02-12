@@ -32,7 +32,7 @@ const TestBatchProtocol = () => {
 
           {/* Trust Benefits */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 mb-10 animate-fade-in-up animation-delay-100">
-            {["~$3,000 per signed case", "We fund all ad spend", "No retainers or setup fees"].map((item) => (
+            {["~$2,900 per signed case", "We fund all ad spend", "No retainers or setup fees"].map((item) => (
               <div key={item} className="flex items-center justify-center gap-2 text-primary-foreground/90">
                 <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
                 <span className="text-base sm:text-lg font-mono font-medium">{item}</span>

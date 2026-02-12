@@ -66,7 +66,7 @@ const ValueProposition = () => {
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/5 border-2 border-primary/20">
             <div className="w-2 h-2 bg-accent animate-pulse" />
             <p className="text-base sm:text-lg text-foreground font-mono">
-              <span className="text-primary font-bold">~$3,000 Avg Cost Per Signed Case</span> — Measurable outcomes, not just leads
+              <span className="text-primary font-bold">~$2,900 Avg Cost Per Signed Case</span> — Measurable outcomes, not just leads
             </p>
           </div>
         </div>

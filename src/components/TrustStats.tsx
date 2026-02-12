@@ -22,7 +22,7 @@ const stats = [
   },
   {
     icon: TrendingUp,
-    value: "5-10",
+    value: "3-7",
     suffix: "x",
     label: "Avg. Client ROI",
     description: "Return on ad spend",
