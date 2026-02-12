@@ -13,27 +13,19 @@ const stats = [
     description: "OTP-verified MVA leads",
   },
   {
-    icon: TrendingUp,
-    value: "60-80",
-    suffix: "%",
-    label: "Contact Rates",
-    description: "Industry avg: 15-25%",
-    isRange: true,
-  },
-  {
     icon: Clock,
-    value: "10-20",
+    value: "87",
     suffix: "%",
-    label: "Lead-to-Sign Rate",
-    description: "With proper follow-up",
+    label: "Retention Rate",
+    description: "Clients who stay & scale",
     isRange: true,
   },
   {
-    icon: DollarSign,
-    value: "<2",
-    suffix: "K",
-    label: "Avg. Cost Per Case",
-    description: "Signed case acquisition",
+    icon: TrendingUp,
+    value: "5-10",
+    suffix: "x",
+    label: "Avg. Client ROI",
+    description: "Return on ad spend",
     isRange: true,
   },
 ];
@@ -130,7 +122,7 @@ const TrustStats = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {stats.map((stat, index) => (
             <StatCard key={stat.label} stat={stat} index={index} isVisible={isVisible} />
           ))}
