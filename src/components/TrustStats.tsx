@@ -1,16 +1,16 @@
 import { useEffect, useState, useRef } from "react";
 import { Shield, Clock, Users, TrendingUp, DollarSign } from "lucide-react";
 
-// Static value for leads delivered - no more random numbers
-const LEADS_DELIVERED = 27500;
+// Static value for signed cases delivered (27,500 leads × 15% conversion)
+const CASES_DELIVERED = 4125;
 
 const stats = [
   {
     icon: Users,
-    value: LEADS_DELIVERED,
+    value: CASES_DELIVERED,
     suffix: "+",
-    label: "Leads Delivered",
-    description: "OTP-verified MVA leads",
+    label: "Signed Cases Delivered",
+    description: "Retainers closed for partners",
   },
   {
     icon: Clock,

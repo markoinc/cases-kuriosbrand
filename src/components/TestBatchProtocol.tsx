@@ -23,10 +23,10 @@ const TestBatchProtocol = () => {
               <span className="text-sm font-mono font-medium text-accent uppercase tracking-wide">Prove It First</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary-foreground uppercase tracking-tight mb-4 sm:mb-6 px-2">
-              7 Cases in 30 Days — Or We Work Free
+              7 Signed Cases in 30 Days
             </h2>
             <p className="text-primary-foreground/80 text-lg sm:text-xl max-w-2xl mx-auto px-4">
-              No credits. No excuses. No fine print. If we can't sign 7 MVA cases in your market in 30 days, we keep running campaigns at our cost until we hit that number. That's the guarantee.
+              No credits. No excuses. No fine print. We deliver signed MVA retainers to your firm — qualified, verified, ready for your docket. That's the standard.
             </p>
           </div>
 

@@ -4,18 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- US-Only Geo-Blocking -->
+    <!-- US-Only Geo-Blocking (non-blocking) -->
     <script>
-    (function() {
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(data => {
-          if (data.country_code !== 'US') {
-            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#14171A;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:20px;"><div><h1 style="font-size:2rem;margin-bottom:1rem;">Service Unavailable in Your Region</h1><p style="color:#9CA3AF;">KURIOS services are currently only available in the United States.</p></div></div>';
-          }
-        })
-        .catch(() => {});
-    })();
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        fetch('https://ipapi.co/json/', { mode: 'cors' })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            if (data.country_code && data.country_code !== 'US') {
+              document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#14171A;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:20px;"><div><h1 style="font-size:2rem;margin-bottom:1rem;">Service Unavailable in Your Region</h1><p style="color:#9CA3AF;">KURIOS services are currently only available in the United States.</p></div></div>';
+            }
+          })
+          .catch(function() {});
+      }, 100);
+    });
     </script>
     <title>Signed MVA Cases Delivered | KURIOS</title>
     <meta name="description" content="We sign MVA cases. You receive them. ~$3,000 per signed case. 7 cases in 30 days. We fund the ads, run intake, deliver cases ready to litigate. For PI firms signing 10+ cases/month." />
@@ -49,22 +51,41 @@
     
     <link rel="canonical" href="https://cases.kuriosbrand.com/" />
     
-    <!-- RB2B Visitor Identification -->
-    <script>!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("GOYPYHQK95OX");</script>
+    <!-- RB2B Visitor Identification (deferred) -->
+    <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        !function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.head.appendChild(s);}("GOYPYHQK95OX");
+      }, 1000);
+    });
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Deferred: Leadsy AI Tag -->
-    <script id="vtag-ai-js" defer src="https://r2.leadsy.ai/tag.js" data-pid="MitvLDKsmCwsaPIp" data-version="062024"></script>
+    <!-- Deferred: Leadsy AI Tag (loaded after page is interactive) -->
+    <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var s = document.createElement('script');
+        s.id = 'vtag-ai-js';
+        s.src = 'https://r2.leadsy.ai/tag.js';
+        s.dataset.pid = 'MitvLDKsmCwsaPIp';
+        s.dataset.version = '062024';
+        s.async = true;
+        document.body.appendChild(s);
+      }, 2000);
+    });
+    </script>
     
     <!-- Chat Widget loaded dynamically on homepage only -->
 
-    <!-- Deferred: Meta Pixel Code -->
+    <!-- Deferred: Meta Pixel Code (loaded after idle) -->
     <script>
-    window.addEventListener('load', function() {
+    function loadFBPixel() {
+      if (window.fbq) return;
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -75,7 +96,12 @@
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1214501257526002');
       fbq('track', 'PageView');
-    });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() { setTimeout(loadFBPixel, 3000); });
+    } else {
+      window.addEventListener('load', function() { setTimeout(loadFBPixel, 4000); });
+    }
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1214501257526002&ev=PageView&noscript=1"

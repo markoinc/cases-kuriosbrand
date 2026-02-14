@@ -4,9 +4,40 @@ import { CheckCircle, Phone, FileSignature, ArrowRight, Shield, Zap, Users } fro
 const ServiceTiers = () => {
   const tiers = [
     {
-      tier: "Tier 1",
-      name: "OTP-Qualified Exclusive Leads",
-      description: "For firms with strong in-house intake teams",
+      tier: "Primary",
+      name: "Signed Cases Delivered",
+      description: "Our signature offer — we handle everything",
+      icon: FileSignature,
+      features: [
+        "We close the retainer for you",
+        "$2,900 avg cost per signed case",
+        "87% of partners renew after 90 days",
+        "State-specific compliance guardrails",
+        "Zero intake burden on your team"
+      ],
+      ideal: "Most firms — get cases, not headaches",
+      highlight: true
+    },
+    {
+      tier: "Option 2",
+      name: "Qualified Live Transfers",
+      description: "For firms who want to close their own cases",
+      icon: Phone,
+      features: [
+        "Pre-qualified by our MVA intake team",
+        "Live transfers during business hours",
+        "50% conversion rate on transfers",
+        "Intent verification before transfer",
+        "Recorded calls for quality assurance",
+        "$2,450 avg cost per case"
+      ],
+      ideal: "Firms with trained closers on staff",
+      highlight: false
+    },
+    {
+      tier: "Option 3",
+      name: "Exclusive Pre-Qualified Leads",
+      description: "For firms with strong in-house intake",
       icon: Shield,
       features: [
         "One-time-password verified",
@@ -18,37 +49,6 @@ const ServiceTiers = () => {
       ],
       ideal: "Firms with 3+ dedicated intake reps",
       highlight: false
-    },
-    {
-      tier: "Tier 2",
-      name: "Qualified Warm Handoffs",
-      description: "Eliminate 'your leads suck' objections forever",
-      icon: Phone,
-      features: [
-        "Pre-qualified by our MVA intake team",
-        "Live transfers during business hours",
-        "50% conversion rate on transfers",
-        "Intent verification before transfer",
-        "Recorded calls for quality assurance",
-        "$2,450 avg cost per case"
-      ],
-      ideal: "Firms struggling with lead response time",
-      highlight: false
-    },
-    {
-      tier: "Tier 3",
-      name: "Signed Cases Delivered",
-      description: "Full intake execution — click to signed retainer",
-      icon: FileSignature,
-      features: [
-        "We close the retainer for you",
-        "$2,900 avg cost per signed case",
-        "87% of partners renew after 90 days",
-        "State-specific compliance guardrails",
-        "Zero intake burden on your team"
-      ],
-      ideal: "Firms who want cases, not leads",
-      highlight: true
     }
   ];
 
@@ -66,13 +66,13 @@ const ServiceTiers = () => {
           <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border-2 border-primary/30 mb-4">
               <Zap className="h-4 w-4 text-primary" />
-              <span className="text-sm font-mono font-medium text-primary uppercase tracking-wide">3-Tier Service Model</span>
+              <span className="text-sm font-mono font-medium text-primary uppercase tracking-wide">Service Options</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground uppercase tracking-tight mb-4">
-              Choose Your Level of Support
+              Signed Cases. That's the Offer.
             </h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Whether you need verified leads, warm transfers, or full case closing — we scale with your intake capacity.
+              Most partners choose signed cases delivered. For firms with strong intake teams, we also offer leads and live transfers.
             </p>
           </div>
 
