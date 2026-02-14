@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import markGundrum from "@/assets/mark-gundrum.png";
+// Optimized WebP from public folder (18KB vs 1.7MB original)
+const markGundrum = "/mark-gundrum-opt.webp";
 
 const FounderSection = () => {
   return (
@@ -23,6 +24,10 @@ const FounderSection = () => {
                     src={markGundrum} 
                     alt="Mark Gundrum - Founder of Kurios"
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width="208"
+                    height="208"
                   />
                 </div>
               </div>

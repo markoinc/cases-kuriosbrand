@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import kuriosLogo from "@/assets/kurios-logo.png";
+// Optimized WebP from public folder
+const kuriosLogo = "/kurios-logo.webp";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

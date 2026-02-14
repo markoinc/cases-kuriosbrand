@@ -1,4 +1,5 @@
-import kuriosLogo from "@/assets/kurios-logo.png";
+// Optimized WebP from public folder
+const kuriosLogo = "/kurios-logo.webp";
 import { Linkedin, Facebook } from "lucide-react";
 
 const Footer = () => {

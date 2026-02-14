@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
-import kuriosLogo from "@/assets/kurios-logo.png";
+// Optimized WebP from public folder
+const kuriosLogo = "/kurios-logo.webp";
 
 const TestBatchCalendar = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);

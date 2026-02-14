@@ -6,8 +6,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import kuriosLogo from "@/assets/kurios-logo.png";
-import markGundrum from "@/assets/mark-gundrum.png";
+// Use optimized WebP images from public folder
+const kuriosLogo = "/kurios-logo.webp";
+const markGundrum = "/mark-gundrum-opt.webp";
 import { supabase } from "@/integrations/supabase/client";
 
 interface UtmParams {
@@ -270,6 +271,8 @@ const Qualify = () => {
                         className="w-full h-full object-cover"
                         loading="eager"
                         decoding="async"
+                        width="320"
+                        height="320"
                       />
                     </div>
                     <div className="absolute -bottom-4 -right-4 bg-primary px-4 py-2 font-mono text-sm text-primary-foreground">

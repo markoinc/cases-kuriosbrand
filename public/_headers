@@ -9,7 +9,7 @@
 /*.woff
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache images
+# Cache images (including WebP)
 /*.png
   Cache-Control: public, max-age=31536000, immutable
 
@@ -17,6 +17,9 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
   Cache-Control: public, max-age=31536000, immutable
 
 /*.svg
@@ -32,9 +35,16 @@
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML files - short cache
+# HTML files - short cache with preload hints
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+  Link: </kurios-logo.webp>; rel=preload; as=image; type=image/webp
 
 /
   Cache-Control: public, max-age=0, must-revalidate
+  Link: </kurios-logo.webp>; rel=preload; as=image; type=image/webp
+
+/qualify
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </kurios-logo.webp>; rel=preload; as=image; type=image/webp
+  Link: </mark-gundrum-opt.webp>; rel=preload; as=image; type=image/webp
