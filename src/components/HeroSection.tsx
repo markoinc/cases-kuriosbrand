@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, TrendingUp, Clock, CheckCircle, FileSignature } from "lucide-react";
-import DataFlowAnimation from "@/components/DataFlowAnimation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
+
+// Lazy load heavy animations to improve LCP
+const DataFlowAnimation = lazy(() => import("@/components/DataFlowAnimation"));
 
 const mockPayloads = [
   {
@@ -93,11 +95,42 @@ const TerminalAnimation = () => {
   );
 };
 
+// Minimal terminal placeholder for instant LCP
+const TerminalPlaceholder = () => (
+  <div className="bg-charcoal border-2 border-primary/40 p-4 sm:p-6 font-mono text-sm shadow-[0_0_15px_hsl(218_100%_60%/0.1)] h-[276px]">
+    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
+      <div className="flex gap-1.5">
+        <div className="w-3 h-3 bg-destructive/80" />
+        <div className="w-3 h-3 bg-yellow-500/80" />
+        <div className="w-3 h-3 bg-green-500/80" />
+      </div>
+      <span className="text-muted-foreground text-xs ml-2">KURIOS_INTAKE_ENGINE</span>
+    </div>
+    <div className="text-muted-foreground mb-3">
+      <span className="text-accent">$</span> kurios --convert
+    </div>
+    <div className="text-green-400 text-xs">[LEAD_CAPTURED]</div>
+    <pre className="text-foreground/90 text-xs">{"{"} "source": "Meta Ads" {"}"}</pre>
+  </div>
+);
+
 const HeroSection = () => {
+  const [showAnimations, setShowAnimations] = useState(false);
+  
+  // Delay heavy animations until after LCP
+  useEffect(() => {
+    const timer = requestIdleCallback(() => setShowAnimations(true), { timeout: 1000 });
+    return () => cancelIdleCallback(timer);
+  }, []);
+  
   return (
     <section className="relative bg-charcoal py-16 sm:py-20 md:py-28 lg:py-32 overflow-hidden w-full">
-      {/* Animated PI Data Flow Background */}
-      <DataFlowAnimation />
+      {/* Animated PI Data Flow Background - lazy loaded */}
+      {showAnimations && (
+        <Suspense fallback={null}>
+          <DataFlowAnimation />
+        </Suspense>
+      )}
       
       {/* Gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-charcoal/60 pointer-events-none" />
@@ -172,7 +205,8 @@ const HeroSection = () => {
             <div className="mb-4">
               <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">// LIVE INTAKE ENGINE</span>
             </div>
-            <TerminalAnimation />
+            {/* Show placeholder immediately, animate after idle */}
+            {showAnimations ? <TerminalAnimation /> : <TerminalPlaceholder />}
             
             {/* Trust indicators below terminal */}
             <div className="flex flex-wrap gap-6 mt-8">
