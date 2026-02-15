@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 // Optimized WebP from public folder
 const kuriosLogo = "/kurios-logo.webp";
 
 const TestBatchCalendar = () => {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-
   // Load HighLevel script on mount
   useEffect(() => {
     const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');
@@ -61,27 +59,16 @@ const TestBatchCalendar = () => {
 
               <div 
                 className="bg-card border-2 border-border p-2 sm:p-6 -mx-4 sm:mx-0 animate-fade-in-up animation-delay-200"
-                style={{ minHeight: "700px" }}
               >
-                {!iframeLoaded && (
-                  <div className="flex items-center justify-center py-20">
-                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                    <span className="ml-3 text-muted-foreground">Loading calendar...</span>
-                  </div>
-                )}
                 <iframe 
                   src="https://api.leadconnectorhq.com/widget/booking/Ghy9ldvFnYt7IB5yKDfV" 
                   style={{ 
                     width: "100%", 
-                    minHeight: "700px", 
-                    border: "none", 
-                    overflow: "hidden",
-                    display: iframeLoaded ? "block" : "none"
+                    height: "700px", 
+                    border: "none"
                   }}
-                  scrolling="no"
                   id="ghl-calendar-embed"
                   title="Book a Discovery Call"
-                  onLoad={() => setIframeLoaded(true)}
                 />
               </div>
 
