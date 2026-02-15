@@ -2,57 +2,15 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Use optimized WebP images from public folder
 const kuriosLogo = "/kurios-logo.webp";
 const markGundrum = "/mark-gundrum-opt.webp";
-import { supabase } from "@/integrations/supabase/client";
-
-interface UtmParams {
-  utm_source?: string;
-  utm_medium?: string;
-  utm_campaign?: string;
-  utm_term?: string;
-  utm_content?: string;
-}
-
-interface FormData {
-  email: string;
-  position: string;
-  firmUrl: string;
-}
 
 const Qualify = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const [formData, setFormData] = useState<FormData>({
-    email: "",
-    position: "",
-    firmUrl: "",
-  });
   const [certificationChecked, setCertificationChecked] = useState(false);
-  const [utmParams, setUtmParams] = useState<UtmParams>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Capture UTM parameters on page load
-  useEffect(() => {
-    const params: UtmParams = {};
-    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const;
-    
-    utmKeys.forEach((key) => {
-      const value = searchParams.get(key);
-      if (value) {
-        params[key] = value;
-      }
-    });
-    
-    if (Object.keys(params).length > 0) {
-      setUtmParams(params);
-      console.log("UTM params captured:", params);
-    }
-  }, [searchParams]);
 
   // Preload HighLevel script for faster calendar load
   useEffect(() => {
@@ -63,57 +21,8 @@ const Qualify = () => {
     document.head.appendChild(link);
   }, []);
 
-  // Send webhook via edge function proxy
-  const sendToWebhook = async (payload: Record<string, unknown>) => {
-    try {
-      console.log("Sending webhook payload:", payload);
-      
-      const { data, error } = await supabase.functions.invoke('webhook-proxy', {
-        body: payload,
-      });
-      
-      if (error) {
-        console.error("Webhook error:", error);
-      } else {
-        console.log("Webhook sent successfully:", data);
-      }
-    } catch (error) {
-      console.error("Webhook submission error:", error);
-    }
-  };
-
-  const isFormValid = () => {
-    const emailValid = formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-    const positionValid = formData.position.trim() !== "";
-    return emailValid && positionValid && certificationChecked;
-  };
-
-  const handleSubmit = async () => {
-    if (!isFormValid() || isSubmitting) return;
-    
-    setIsSubmitting(true);
-
-    // Fire Meta Pixel AddToCart event if fbq exists
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'AddToCart', {
-        content_name: 'Qualification Form Submit',
-        content_category: 'MVA Lead Gen',
-      });
-    }
-
-    // Send to webhook
-    const payload = {
-      email: formData.email,
-      position: formData.position,
-      firm_url: formData.firmUrl,
-      source: "cases_subdomain",
-      submitted_at: new Date().toISOString(),
-      ...utmParams,
-    };
-    
-    await sendToWebhook(payload);
-
-    // Navigate to calendar
+  const handleSubmit = () => {
+    if (!certificationChecked) return;
     navigate("/test-batch-calendar");
   };
 
@@ -172,32 +81,11 @@ const Qualify = () => {
                 </h1>
 
                 <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 lg:mb-8 max-w-xl mx-auto lg:mx-0">
-                  Enter your details below and pick a time that works for you.
+                  Confirm below and pick a time that works for you.
                 </p>
 
-                <div className="max-w-md mx-auto lg:mx-0 space-y-3">
-                  <Input
-                    type="email"
-                    placeholder="Work email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="h-12 lg:h-14 text-base lg:text-lg px-4 lg:px-6 bg-card border-2 border-border focus:border-primary placeholder:text-muted-foreground/60"
-                  />
-                  <Input
-                    type="text"
-                    placeholder="Your role (e.g., Partner, Marketing Director)"
-                    value={formData.position}
-                    onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                    className="h-12 lg:h-14 text-base lg:text-lg px-4 lg:px-6 bg-card border-2 border-border focus:border-primary placeholder:text-muted-foreground/60"
-                  />
-                  <Input
-                    type="url"
-                    placeholder="Law firm website"
-                    value={formData.firmUrl}
-                    onChange={(e) => setFormData({ ...formData, firmUrl: e.target.value })}
-                    className="h-12 lg:h-14 text-base lg:text-lg px-4 lg:px-6 bg-card border-2 border-border focus:border-primary placeholder:text-muted-foreground/60"
-                  />
-                  <div className="flex items-start space-x-3 text-left">
+                <div className="max-w-md mx-auto lg:mx-0 space-y-4">
+                  <div className="flex items-start space-x-3 text-left p-4 bg-card/50 border border-border rounded-lg">
                     <Checkbox
                       id="certification"
                       checked={certificationChecked}
@@ -214,10 +102,10 @@ const Qualify = () => {
                   <Button 
                     size="lg"
                     onClick={handleSubmit}
-                    disabled={!isFormValid() || isSubmitting}
+                    disabled={!certificationChecked}
                     className="w-full btn-hover text-base sm:text-lg lg:text-xl px-6 sm:px-8 lg:px-12 py-5 sm:py-6 lg:py-8 h-auto bg-primary hover:bg-primary/90 border-2 border-primary shadow-[0_0_30px_hsl(218_100%_60%/0.4)] font-bold uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Loading..." : "Book My Call"}
+                    Book My Call
                     <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                   </Button>
                 </div>
