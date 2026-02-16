@@ -6,6 +6,18 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 const kuriosLogo = "/kurios-logo.webp";
 
 const TestBatchCalendar = () => {
+  // Fire Lead event when calendar page loads (shows high intent)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead', {
+        content_name: 'Calendar Page View',
+        content_category: 'MVA Lead Gen',
+        content_type: 'booking_page',
+      });
+      console.log('[Meta Pixel] Lead event fired - calendar page view');
+    }
+  }, []);
+
   // Load HighLevel script on mount
   useEffect(() => {
     const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');

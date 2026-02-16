@@ -8,6 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 const kuriosLogo = "/kurios-logo.webp";
 const markGundrum = "/mark-gundrum-opt.webp";
 
+// Track Meta Pixel events
+const trackEvent = (event: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    (window as any).fbq('track', event, params);
+    console.log(`[Meta Pixel] ${event}`, params);
+  }
+};
+
 const Qualify = () => {
   const navigate = useNavigate();
   const [certificationChecked, setCertificationChecked] = useState(false);
@@ -23,6 +31,14 @@ const Qualify = () => {
 
   const handleSubmit = () => {
     if (!certificationChecked) return;
+    
+    // Fire AddToCart event when user clicks "Book My Call"
+    trackEvent('AddToCart', {
+      content_name: 'Book My Call - Qualified',
+      content_category: 'MVA Lead Gen',
+      content_type: 'booking_intent',
+    });
+    
     navigate("/test-batch-calendar");
   };
 
