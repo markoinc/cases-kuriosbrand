@@ -51,8 +51,39 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Fallback content shown while React loads -->
+      <div id="loading-fallback" style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:20px;">
+        <div style="width:40px;height:40px;border:3px solid #3366FF;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;"></div>
+        <p style="color:#9CA3AF;font-size:14px;">Loading KURIOS...</p>
+        <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+      </div>
+    </div>
+    
+    <!-- Global error handler to catch JS failures -->
+    <script>
+    window.onerror = function(msg, url, line, col, error) {
+      var root = document.getElementById('root');
+      if (root) {
+        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:10px;"><h1 style="color:#ef4444;font-size:1.5rem;">Something went wrong</h1><p style="color:#9CA3AF;font-size:14px;">Error: ' + msg + '</p><p style="color:#6b7280;font-size:12px;">' + url + ':' + line + '</p><a href="/qualify" style="margin-top:20px;padding:12px 24px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;">Apply for Cases →</a></div>';
+      }
+      return false;
+    };
+    </script>
+    
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Timeout fallback if React doesn't load within 8 seconds -->
+    <script>
+    setTimeout(function() {
+      var root = document.getElementById('root');
+      var fallback = document.getElementById('loading-fallback');
+      // If fallback still exists after 8s, React didn't load
+      if (fallback && root.contains(fallback)) {
+        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:20px;"><h1 style="font-size:2rem;margin-bottom:1rem;">KURIOS</h1><p style="color:#9CA3AF;max-width:400px;">Page took too long to load. Your browser may be blocking scripts.</p><a href="/qualify" style="margin-top:20px;padding:16px 32px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;font-weight:600;">Apply for Signed Cases →</a><p style="color:#6b7280;font-size:12px;margin-top:20px;">Or try: Clear cache, disable ad blockers, use different browser</p></div>';
+      }
+    }, 8000);
+    </script>
     
     <!-- Deferred: Leadsy AI Tag (loaded after page is interactive) -->
     <script>
