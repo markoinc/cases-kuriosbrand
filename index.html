@@ -60,27 +60,13 @@
       </div>
     </div>
     
-    <!-- Global error handler to catch JS failures (ignores third-party script errors) -->
+    <!-- Global error handler - removed to let React handle its own errors -->
     <script>
+    window.__appErrors = [];
     window.onerror = function(msg, url, line, col, error) {
-      // Ignore cross-origin "Script error." - these are from third-party scripts (RB2B, Leadsy, FB Pixel)
-      // and should not break the main app
-      if (msg === 'Script error.' && !url && line === 0) {
-        console.warn('Third-party script error (ignored):', msg);
-        return true; // Suppress the error
-      }
-      // Ignore errors from third-party domains
-      if (url && (url.includes('facebook') || url.includes('leadsy') || url.includes('cloudfront') || url.includes('leadconnector'))) {
-        console.warn('Third-party error (ignored):', url);
-        return true;
-      }
-      // Only show error page for critical errors in our own code
-      var root = document.getElementById('root');
-      var fallback = document.getElementById('loading-fallback');
-      // Only show error if React hasn't loaded yet (fallback still visible)
-      if (root && fallback && root.contains(fallback)) {
-        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:10px;"><h1 style="color:#ef4444;font-size:1.5rem;">Something went wrong</h1><p style="color:#9CA3AF;font-size:14px;">Error: ' + msg + '</p><p style="color:#6b7280;font-size:12px;">' + (url || 'unknown') + ':' + line + '</p><a href="/qualify" style="margin-top:20px;padding:12px 24px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;">Apply for Cases →</a></div>';
-      }
+      window.__appErrors.push({msg: msg, url: url, line: line});
+      console.error('Global error:', msg, url, line);
+      // Don't show error page - let React render or timeout will kick in
       return false;
     };
     </script>
@@ -92,11 +78,14 @@
     setTimeout(function() {
       var root = document.getElementById('root');
       var fallback = document.getElementById('loading-fallback');
-      // If fallback still exists after 8s, React didn't load
-      if (fallback && root.contains(fallback)) {
-        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:20px;"><h1 style="font-size:2rem;margin-bottom:1rem;">KURIOS</h1><p style="color:#9CA3AF;max-width:400px;">Page took too long to load. Your browser may be blocking scripts.</p><a href="/qualify" style="margin-top:20px;padding:16px 32px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;font-weight:600;">Apply for Signed Cases →</a><p style="color:#6b7280;font-size:12px;margin-top:20px;">Or try: Clear cache, disable ad blockers, use different browser</p></div>';
+      var isEmpty = root && (!root.innerHTML || root.innerHTML.trim() === '' || root.childNodes.length === 0);
+      // If fallback still visible OR root is empty (React crashed), show error
+      if ((fallback && root.contains(fallback)) || isEmpty) {
+        var errors = window.__appErrors || [];
+        var errorList = errors.length > 0 ? '<p style="color:#ef4444;font-size:11px;max-width:300px;word-break:break-all;">' + errors.map(function(e){return e.msg + ' @ ' + (e.url || 'unknown') + ':' + e.line;}).join('<br>') + '</p>' : '';
+        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:20px;"><h1 style="font-size:2rem;margin-bottom:1rem;">KURIOS</h1><p style="color:#9CA3AF;max-width:400px;">Page took too long to load. Your browser may be blocking scripts.</p>' + errorList + '<a href="/qualify" style="margin-top:20px;padding:16px 32px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;font-weight:600;">Apply for Signed Cases →</a><p style="color:#6b7280;font-size:12px;margin-top:20px;">Or try: Clear cache, disable ad blockers, use different browser</p></div>';
       }
-    }, 8000);
+    }, 5000);
     </script>
     
     <!-- Deferred: Leadsy AI Tag (loaded after page is interactive) -->
