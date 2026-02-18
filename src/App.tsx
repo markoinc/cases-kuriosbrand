@@ -19,6 +19,7 @@ const Qualify = lazy(() => import("./pages/Qualify"));
 const Onboarding = lazy(() => import("./pages/Onboarding"));
 const TestBatchCalendar = lazy(() => import("./pages/TestBatchCalendar"));
 const AiSeo = lazy(() => import("./pages/AiSeo"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/aba-disclaimer" element={<ABADisclaimer />} />
             <Route path="/login" element={<Login />} />
             <Route path="/ai-seo" element={<AiSeo />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
