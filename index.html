@@ -4,21 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- US-Only Geo-Blocking (non-blocking) -->
-    <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        fetch('https://ipapi.co/json/', { mode: 'cors' })
-          .then(function(r) { return r.json(); })
-          .then(function(data) {
-            if (data.country_code && data.country_code !== 'US') {
-              document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#14171A;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:20px;"><div><h1 style="font-size:2rem;margin-bottom:1rem;">Service Unavailable in Your Region</h1><p style="color:#9CA3AF;">KURIOS services are currently only available in the United States.</p></div></div>';
-            }
-          })
-          .catch(function() {});
-      }, 100);
-    });
-    </script>
+    <!-- Geo-blocking removed: Meta ads target US only, this was just a failure point -->
     <title>Signed MVA Cases Delivered | KURIOS</title>
     <meta name="description" content="We sign MVA cases. You receive them. ~$3,000 per signed case. 7 cases in 30 days. We fund the ads, run intake, deliver cases ready to litigate. For PI firms signing 10+ cases/month." />
     <meta name="author" content="KURIOS" />
