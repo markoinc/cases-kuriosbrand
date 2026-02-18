@@ -60,12 +60,26 @@
       </div>
     </div>
     
-    <!-- Global error handler to catch JS failures -->
+    <!-- Global error handler to catch JS failures (ignores third-party script errors) -->
     <script>
     window.onerror = function(msg, url, line, col, error) {
+      // Ignore cross-origin "Script error." - these are from third-party scripts (RB2B, Leadsy, FB Pixel)
+      // and should not break the main app
+      if (msg === 'Script error.' && !url && line === 0) {
+        console.warn('Third-party script error (ignored):', msg);
+        return true; // Suppress the error
+      }
+      // Ignore errors from third-party domains
+      if (url && (url.includes('facebook') || url.includes('leadsy') || url.includes('cloudfront') || url.includes('leadconnector'))) {
+        console.warn('Third-party error (ignored):', url);
+        return true;
+      }
+      // Only show error page for critical errors in our own code
       var root = document.getElementById('root');
-      if (root) {
-        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:10px;"><h1 style="color:#ef4444;font-size:1.5rem;">Something went wrong</h1><p style="color:#9CA3AF;font-size:14px;">Error: ' + msg + '</p><p style="color:#6b7280;font-size:12px;">' + url + ':' + line + '</p><a href="/qualify" style="margin-top:20px;padding:12px 24px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;">Apply for Cases →</a></div>';
+      var fallback = document.getElementById('loading-fallback');
+      // Only show error if React hasn't loaded yet (fallback still visible)
+      if (root && fallback && root.contains(fallback)) {
+        root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:10px;"><h1 style="color:#ef4444;font-size:1.5rem;">Something went wrong</h1><p style="color:#9CA3AF;font-size:14px;">Error: ' + msg + '</p><p style="color:#6b7280;font-size:12px;">' + (url || 'unknown') + ':' + line + '</p><a href="/qualify" style="margin-top:20px;padding:12px 24px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;">Apply for Cases →</a></div>';
       }
       return false;
     };
