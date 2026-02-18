@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 // Optimized WebP from public folder
 const kuriosLogo = "/kurios-logo.webp";
 
 const TestBatchCalendar = () => {
+  const [calendarLoaded, setCalendarLoaded] = useState(false);
   // Fire InitiateCheckout when calendar page loads (maintains historical consistency)
   useEffect(() => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -113,17 +114,28 @@ const TestBatchCalendar = () => {
               </div>
 
               <div 
-                className="bg-card border-2 border-border p-2 sm:p-6 -mx-4 sm:mx-0 animate-fade-in-up animation-delay-200"
+                className="bg-card border-2 border-border p-2 sm:p-6 -mx-4 sm:mx-0 animate-fade-in-up animation-delay-200 relative"
               >
+                {/* Loading indicator while calendar loads */}
+                {!calendarLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-card z-10" style={{ minHeight: '700px' }}>
+                    <Loader2 className="h-10 w-10 text-primary animate-spin mb-4" />
+                    <p className="text-muted-foreground font-mono text-sm">Loading calendar...</p>
+                  </div>
+                )}
                 <iframe 
                   src="https://api.leadconnectorhq.com/widget/booking/Ghy9ldvFnYt7IB5yKDfV" 
                   style={{ 
                     width: "100%", 
                     height: "700px", 
-                    border: "none"
+                    border: "none",
+                    opacity: calendarLoaded ? 1 : 0,
+                    transition: "opacity 0.3s ease"
                   }}
                   id="ghl-calendar-embed"
                   title="Book a Discovery Call"
+                  loading="eager"
+                  onLoad={() => setCalendarLoaded(true)}
                 />
               </div>
 
