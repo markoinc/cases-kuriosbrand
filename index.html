@@ -96,7 +96,7 @@
         var errorList = errors.length > 0 ? '<p style="color:#ef4444;font-size:11px;max-width:300px;word-break:break-all;">' + errors.map(function(e){return e.msg + ' @ ' + (e.url || 'unknown') + ':' + e.line;}).join('<br>') + '</p>' : '';
         root.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a1a1a;color:#fff;font-family:Inter,system-ui,sans-serif;text-align:center;padding:20px;flex-direction:column;gap:20px;"><h1 style="font-size:2rem;margin-bottom:1rem;">KURIOS</h1><p style="color:#9CA3AF;max-width:400px;">Page took too long to load. Your browser may be blocking scripts.</p>' + errorList + '<a href="/qualify" style="margin-top:20px;padding:16px 32px;background:#3366FF;color:#fff;text-decoration:none;border-radius:4px;font-weight:600;">Apply for Signed Cases →</a><p style="color:#6b7280;font-size:12px;margin-top:20px;">Or try: Clear cache, disable ad blockers, use different browser</p></div>';
       }
-    }, 5000);
+    }, 8000);
     </script>
     
     <!-- Deferred: Leadsy AI Tag (loaded after page is interactive) -->
