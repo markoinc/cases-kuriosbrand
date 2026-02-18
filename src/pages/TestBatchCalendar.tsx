@@ -30,6 +30,49 @@ const TestBatchCalendar = () => {
     }
   }, []);
 
+  // Listen for GHL calendar booking completion and fire Schedule pixel
+  useEffect(() => {
+    let scheduleFired = false; // Prevent duplicate fires
+    
+    const handleMessage = (event: MessageEvent) => {
+      // Log ALL messages from GHL for debugging (check console)
+      if (event.origin.includes('leadconnectorhq') || event.origin.includes('msgsndr')) {
+        console.log('[GHL Message]', event.origin, event.data);
+        
+        const data = event.data;
+        const dataStr = typeof data === 'string' ? data : JSON.stringify(data);
+        
+        // Check for booking confirmation - GHL uses various formats
+        const isBookingConfirmed = 
+          dataStr.includes('booking') ||
+          dataStr.includes('confirmed') ||
+          dataStr.includes('scheduled') ||
+          dataStr.includes('appointment') ||
+          (typeof data === 'object' && (
+            data.type?.includes?.('book') ||
+            data.event?.includes?.('book') ||
+            data.action?.includes?.('book') ||
+            data.status === 'confirmed'
+          ));
+        
+        if (isBookingConfirmed && !scheduleFired) {
+          scheduleFired = true;
+          // Fire Schedule pixel from parent domain (has fbclid cookies)
+          if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('track', 'Schedule', {
+              content_name: 'Discovery Call Booked',
+              content_category: 'MVA Lead Gen',
+            });
+            console.log('[Meta Pixel] Schedule event fired - booking confirmed from GHL');
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
