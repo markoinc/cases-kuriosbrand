@@ -50,8 +50,8 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Target modern browsers only - enables smaller bundles
-    target: 'esnext',
+    // Target Safari 14+ and modern browsers for broader compatibility
+    target: ['es2020', 'safari14', 'chrome87', 'firefox78'],
     // Minify with esbuild (faster) and enable tree-shaking
     minify: 'esbuild',
     // Reduce chunk size warnings threshold
