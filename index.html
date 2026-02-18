@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Safari polyfill for requestIdleCallback (not supported in Safari/iOS) -->
+    <script>
+    window.requestIdleCallback = window.requestIdleCallback || function(cb) {
+      var start = Date.now();
+      return setTimeout(function() {
+        cb({ didTimeout: false, timeRemaining: function() { return Math.max(0, 50 - (Date.now() - start)); } });
+      }, 1);
+    };
+    window.cancelIdleCallback = window.cancelIdleCallback || function(id) { clearTimeout(id); };
+    </script>
+    
     <!-- Geo-blocking removed: Meta ads target US only, this was just a failure point -->
     <title>Signed MVA Cases Delivered | KURIOS</title>
     <meta name="description" content="We sign MVA cases. You receive them. ~$3,000 per signed case. 7 cases in 30 days. We fund the ads, run intake, deliver cases ready to litigate. For PI firms signing 10+ cases/month." />
